@@ -1,0 +1,126 @@
+/* *{
+    box-sizing: border-box;
+    transition: .5s;
+} */
+
+
+
+.createBoard div, .createBoard span, .createBoard section{
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+
+.createBoard div:hover, .createBoard span:hover, .createBoard section:hover{
+    border-color: #888;
+}
+
+.appHeader{
+    position: fixed;
+    left: 0px;
+    height: 100vh;
+    width: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.appHeader p {
+    cursor: pointer;
+    transition: .5s;
+}
+
+.appHeader p:hover{
+    letter-spacing: 1px;
+}
+
+.appHeader > div.listHolder{
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.appHeader > div.listHolder {
+    width: 100%;
+    min-width: 210px;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+
+
+.appHeader ul li a{
+    padding: 10px;
+    text-decoration: none;
+    color: #555;
+}
+
+.appHeader ul li a:hover{
+    text-decoration: none;
+}
+
+.cssEditor {
+    height: calc(95vh - 46px);
+    overflow: hidden;
+    width: 0px;
+    top: 50%;
+    position: fixed;
+    right: 0;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+    transform: translateY(-50%);
+    transition: .5s;
+}
+
+.cssEditor.showCssEditor{
+    width: 600px;
+    border: 2px solid #c3bfbf;
+}
+
+
+.toggleCssPan{
+    position: fixed;
+    /* right: 573px; */
+    right: -25px;
+    transform: rotate(270deg);
+    height: 50px;
+    width: 100px;
+    top: calc(50% - 50px);
+    border-radius: 5px 5px 0px 0px;
+    background: #fff;
+    border: 1px solid #888;
+    transition: .5s;
+}
+
+.toggleCssPan.showPan{
+    right: 573px;
+    color: red;
+    border-color: red;
+}
+
+.basicElems li{
+    width: 50%;
+    padding: 5px;
+    list-style: none;
+    max-width: 95px;
+}
+
+.basicElems li a {
+    border: 1px solid #efefef;
+    display: flex;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+    border-radius: 5px;
+}
+
+.gridElems li {
+    height: auto;
+    max-width: 195px;
+}
+
+.gridElems li a{
+    display:block;
+}
