@@ -3,11 +3,14 @@
     transition: .5s;
 } */
 
-
+*{
+    font-family: 'Roboto', sans-serif;
+}
 
 .createBoard div, .createBoard span, .createBoard section{
     padding: 15px;
     border: 1px solid #eee;
+    position: relative;
 }
 
 
@@ -23,6 +26,8 @@
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+    background-color: #fff;
+    transition: .5s;
 }
 
 .appHeader p {
@@ -123,4 +128,12 @@
 
 .gridElems li a{
     display:block;
+}
+
+.editBtn {
+    position: absolute;
+    right: 0px;
+    top: -5px;
+    font-size: 8px;
+    padding: 0px !important;
 }

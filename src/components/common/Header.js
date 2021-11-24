@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 
-const Header = () => {
+const Header = (props) => {
 
     const [basic, setBasic] = useState(false);
     const [grid, setGrid] = useState(false);
@@ -110,8 +110,8 @@ const Header = () => {
                     </li>
 
 
-                    <li className="w-100 ">
-                        <a href="#" className="">
+                    <li className="w-100">
+                        <a href="javascript:void(0)" className="" onClick={()=>props.addContainer(2, "container")}>
 
                             <div className="d-flex flex-wrap p-2 border justify-content-center">
 
@@ -131,7 +131,7 @@ const Header = () => {
 
 
                     <li className="w-100 ">
-                        <a href="#" className="">
+                        <a href="javascript:void(0)" className="" onClick={()=>props.addContainer(4, "container")}>
 
                             <div className="d-flex flex-wrap p-2 border justify-content-center">
 
@@ -158,7 +158,7 @@ const Header = () => {
 
 
                     <li className="w-100 ">
-                        <a href="#" className="">
+                        <a href="javascript:void(0)" className="" onClick={()=>props.addContainer(3, "container")}>
 
                             <div className="d-flex flex-wrap p-2 border justify-content-center">
 

@@ -11,6 +11,9 @@ import CssEditor from "../components/CssEditor";
 import Artboard from "../components/block/Artboard";
 import _JSXStyle from 'styled-jsx/style';
 
+//elements
+import Text from "../components/elements/Text";
+
 class App extends React.Component{
 
 
@@ -21,73 +24,100 @@ class App extends React.Component{
     this.state= {
       name:"Strapper",
       styles:"",
+      options:{
+        edit:false
+      },
       dummy:[
 
         {
           name:"container",
-          cols:[
+          rows:[
             {
-              class:"col-md-4",
-              children:[
+              cols:[
                 {
-                  text:"",
-                  tag:"h3",
-                  class:""
-                },
-                {
-                  src:"",
-                  tag:"img",
-                  class:""
+                  class:"col-md-4",
+                  children:[
+                    {
+                      type:"text",
+                      text:"Custom Text",
+                      tag:"h3",
+                      class:"font-weight-light",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    },
+                    {
+                      type:"img",
+                      src:"",
+                      tag:"img",
+                      class:"",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    }
+                  ]
+                },{
+                  class:"col-md-4",
+                  children:[
+                    {
+                      type:"text",
+                      text:"",
+                      tag:"h3",
+                      class:"",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    },
+                    {
+                      type:"img",
+                      src:"",
+                      tag:"img",
+                      class:"",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    }
+                  ]
+                },{
+                  class:"col-md-4",
+                  children:[
+                    {
+                      type:"text",
+                      text:"",
+                      tag:"h3",
+                      class:"",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    },
+                    {
+                      type:"img",
+                      src:"",
+                      tag:"img",
+                      class:"",
+                      wrapper:{
+                        class:"",
+                        is:false
+                      }
+                    }
+                  ]
                 }
-              ]
-            },{
-              class:"col-md-4",
-              children:[
-                {
-                  text:"",
-                  tag:"h3",
-                  class:""
-                },
-                {
-                  src:"",
-                  tag:"img",
-                  class:""
-                }
-              ]
-            },{
-              class:"col-md-4",
-              children:[
-                {
-                  text:"",
-                  tag:"h3",
-                  class:""
-                },
-                {
-                  src:"",
-                  tag:"img",
-                  class:""
-                }
+                
               ]
             }
-            
-          ],
+          ]
+          
         },
         
 
       ],
-      stylePallette:{
-        "background-color":"",
-        "background-image":"",
-        "font-size":"",
-        "color":"",
-        "padding":"",
-        "margin":"",
-        "position":"",
-        "border":"",
-        "display":"",
-        "id":"",
-        "class":""
-      }
+
+      master:[]
     }
   }
 
@@ -100,6 +130,52 @@ class App extends React.Component{
   }
 
 
+  addContainer = (e, cont) => {
+    let master = this.state.master
+    
+    let cols = [];
+    let rows = [];
+    
+    for(let i=0; i < e; i++){
+      cols.push({
+        class:"col-md-"+12/e,
+        children:[]
+      })
+    }
+
+    rows.push(
+      {
+        cols:cols
+      }
+    )
+    
+    master.push({
+      name:cont,
+      rows:rows
+      
+    })
+
+    this.setState({
+      master:master
+    })
+    
+    console.log(master);
+    
+  }
+
+  toggleEdit = () => {
+    let options = this.state.options;
+    options.edit = !options.edit;
+    this.setState({
+      options:options
+    })
+  }
+
+
+  getCOl = (e,f, g) => {
+    console.log(e,f,g);
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -107,7 +183,10 @@ class App extends React.Component{
 
         <style jsx="true">{this.state.styles}</style>
 
-        <Header/>
+        <Header
+          addContainer={this.addContainer}
+        />
+
         <CssEditor updateStyle={this.updateStyle}/>
         <Artboard/>
 
@@ -118,24 +197,34 @@ class App extends React.Component{
 
 
         <div className="createBoard">
-        {this.state.dummy.map((e,i)=>{
+        {this.state.master.map((e,i)=>{
 
           return(
 
             <section key={i}>
 
+              {this.state.options.edit ? <button className="editBtn btn">edit</button> : null}
+
               <div className={e.name}>
+              {this.state.options.edit ? <button className="editBtn btn">edit</button> : null}
 
-                <div className="row">
+                {e.rows.map((row,rowI)=>{
+                    return(
+                      <div className="row" key={rowI}>
+                          {this.state.options.edit ? <button className="editBtn btn">edit</button> : null}
 
-                  {e.cols.map((col,colI)=>{
-                      return(
-                        <div key={colI} className={col.class}>
-                        </div>
-                      )
-                  })}
+                          {row.cols.map((col,colI)=>{
+                            return(
+                              <div className={col.class} key={colI} onClick={() => this.getCOl(i, rowI, colI)}>
+                                {this.state.options.edit ? <button className="editBtn btn">edit</button> : null}
+                              </div>
+                            )
+                          })}
 
-                </div>
+                      </div>
+                    )
+                })}
+
 
               </div>
 
@@ -147,6 +236,12 @@ class App extends React.Component{
         })}
         </div>
 
+        <div className="text-right">
+        <button onClick={()=> this.addContainer(4, "container-fluid")}>Add</button>
+        <button onClick={this.toggleEdit}>edit</button>
+        </div>
+
+        {/* <Text info={this.state.dummy[0].cols[0].children[0]}/> */}
         
 
         
